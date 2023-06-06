@@ -41,7 +41,7 @@ def walk_json(json_data):
         for dat2 in data["dataList"]:
             funt = dat2['title']
             # print(shen + funt)
-            dat2["imageUrl"] = 'file:///android_asset/place/' + get_pinyin(shen) + '-' + get_pinyin(funt) + '.webp'
+            dat2["imageUrl"] = 'file:///android_asset/book/' + get_pinyin(shen) + '-' + get_pinyin(funt) + '.webp'
     
     return json_data
 
@@ -85,8 +85,8 @@ def get_pinyin(name):
 
 if __name__ == '__main__':
     # main()
-    # json_data = parse_json('place.json')
-    # save_json("place2.json",walk_json(json_data))
-    copy_webp('gogo32\\掌上果农假页面图片\\水果产地')
+    json_data = parse_json('C:\\Users\\soldi\\Desktop\\youmieyou\\codeup\\FakePage-Sample\\immutable-aar-readbook\\lib\\src\\main\\assets\\book\\bidu.json')
+    save_json("biju.json",walk_json(json_data))
+    # copy_webp('gogo32\\掌上果农假页面图片\\水果产地')
 
 # main()

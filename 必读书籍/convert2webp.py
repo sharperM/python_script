@@ -11,7 +11,7 @@ def walk_dir(dir_path):
 
 # 压缩图片 使用cwebp 命令
 def compress_image(file_path,old_dir,new_dir,quality=80):
-    new_file_path = file_path.replace('.png', '').replace('.pic', '').replace('.jpg', '').replace('.jpeg', '').replace(old_dir, new_dir)
+    new_file_path = file_path.lower().replace('.png', '').replace('.pic', '').replace('.jpg', '').replace('.jpeg', '').replace(old_dir, new_dir)
     mkdir(os.path.dirname(new_file_path))
     sys_str = '''..\\tools\\libwebp-0.4.1-windows-x64-no-wic\\bin\\cwebp.exe -q {0} {1} -o {2}.webp'''.format(quality, file_path,new_file_path )
     os.system(sys_str)
@@ -36,5 +36,6 @@ if __name__ == '__main__':
     file_list = walk_dir(old_dir)
     print(file_list)
     for file_path in file_list:
+        file_path = file_path.lower()
         if (file_path.endswith('.jpg') or file_path.endswith('.jpeg') or file_path.endswith('.png') or file_path.endswith('.pic') or file_path.endswith('.JPEG') or file_path.endswith('.PNG')):
             compress_image(file_path,old_dir,new_dir,50)
