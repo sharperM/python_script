@@ -1,0 +1,19 @@
+chatgpt 描述要处理的问题原文
+
+
+假设 要 用 python3 处理 将 xls文件，转换成json文件。
+要求 
+1.book 1 到 4的 第2列 为 title 的值，第3列为desc 的值，从第二行开始， 转成" [{title: ,desc:}] "的json格式
+
+
+假设 要 用 python3 处理
+怎样将 str 的字符串 保存成 utf-8 编码的文本文件
+
+假设 要 用 python3 处理 xlsx文件,
+怎样提取表格里面的单元格图片
+单元格位置是 第4列，从第二行开始，
+
+    df = pd.read_excel(input_file, header=None, usecols=[0, 1, 2], skiprows=1,sheet_name=0)
+    df.columns = ['id','title', 'desc']
+
+df 增加 新一列 imageUrl 根据第一个列 id 字符串 + r"file:///android_asset/place/hai3nan2"
