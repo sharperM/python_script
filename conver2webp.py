@@ -10,17 +10,10 @@ def mkdir(path):
         os.makedirs(path)
         
 def compress_image(file_path, olddirname, filename1,quality=80,  ):
-    # print("file_path")
-    # print(olddirname)
-    # print(filename1)
+
     part2 = (file_path.replace('.png', '').replace('.pic', '').replace('.jpg', '').replace('.jpeg', '').replace(os.path.join(olddirname,filename1), ''))
-    # print(part2)
     new_file_path = os.path.join(olddirname,filename1+'_webp') 
     new_file_path = os.path.join(new_file_path,part2[1:]) 
-
-    # print(old_file_path)
-    # print(new_file_path)
-    # return
     mkdir(os.path.dirname(new_file_path))
     sys_str = '''.\\tools\\libwebp-0.4.1-windows-x64-no-wic\\bin\\cwebp.exe -q {0} {1} -o {2}.webp'''.format(quality, file_path,new_file_path )
     os.system(sys_str)
@@ -48,5 +41,13 @@ if __name__ == '__main__':
     new_file_path2 = os.path.basename (os.path.abspath(sys.argv[1]))
     # print (new_file_path)
     for file_path in file_list:
-        if (file_path.endswith('.jpg') or file_path.endswith('.jpeg') or file_path.endswith('.png') or file_path.endswith('.pic') or file_path.endswith('.JPEG') or file_path.endswith('.PNG')):
+        # file_path 的 小写
+        lower_file_path = file_path.lower()
+        if (lower_file_path.endswith('.jpg') or lower_file_path.endswith('.jpeg') or lower_file_path.endswith('.png') or lower_file_path.endswith('.pic')):
             compress_image(file_path, olddirname,new_file_path2 )
+        else:
+            part2 = (file_path.replace('.png', '').replace('.pic', '').replace('.jpg', '').replace('.jpeg', '').replace(os.path.join(olddirname,new_file_path2), ''))
+            new_file_path = os.path.join(olddirname,new_file_path2+'_webp') 
+            new_file_path = os.path.join(new_file_path,part2[1:]) 
+            mkdir(os.path.dirname(new_file_path))
+            shutil.copy(file_path, new_file_path)
